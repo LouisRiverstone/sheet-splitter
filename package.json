@@ -1,6 +1,6 @@
 {
   "name": "sheet-splitter",
-  "version": "4.1.0",
+  "version": "4.2.0",
   "description": "A sheet-splitter for Excel",
   "main": "./dist/main/index.js",
   "author": "Louis Riverstone",
