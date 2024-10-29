@@ -95,11 +95,21 @@ app.whenReady().then(() => {
         blobs.push(new Blob([wbout], { type: 'application/octet-stream' }))
 
         event.reply('process-file', {
-          message: `Processando ${i} de ${dataRows.length}`
+          message: `Processando ${i} de ${dataRows.length}`,
+          percentage: ((i / dataRows.length) * 100).toFixed(2)
         })
       }
 
-      event.reply('process-file', { message: 'Processamento concluído', blobs })
+      //wait 500 milisseconds
+      await new Promise((resolve) => setTimeout(resolve, 500))
+
+      event.reply('process-file', {
+        message: `Processamento concluído`,
+        percentage: (100).toFixed(2)
+      })
+
+      //wait 500 milisseconds
+      await new Promise((resolve) => setTimeout(resolve, 500))
 
       const {
         canceled,
@@ -109,8 +119,6 @@ app.whenReady().then(() => {
       })
 
       if (!canceled && filePath) {
-        console.log('Saving files to:', filePath)
-
         const arrayBuffers = await Promise.all(blobs.map((blob) => blob.arrayBuffer()))
 
         arrayBuffers.forEach((arrayBuffer, index) => {
