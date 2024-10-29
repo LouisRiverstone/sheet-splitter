@@ -2,7 +2,7 @@
   "name": "sheet-splitter",
   "version": "4.0.0",
   "description": "A sheet-splitter for Excel",
-  "main": "./out/main/index.js",
+  "main": "./dist/main/index.js",
   "author": "Louis Riverstone",
   "homepage": "https://github.com/LouisRiverstone",
   "scripts": {
@@ -11,15 +11,15 @@
     "typecheck:node": "tsc --noEmit -p tsconfig.node.json --composite false",
     "typecheck:web": "vue-tsc --noEmit -p tsconfig.web.json --composite false",
     "typecheck": "npm run typecheck:node && npm run typecheck:web",
-    "start": "electron-vite preview",
-    "dev": "electron-vite dev",
-    "build": "npm run typecheck && electron-vite build",
+    "start": "electron-vite preview --outDir=dist",
+    "dev": "electron-vite dev --outDir=dist",
+    "build": "npm run typecheck && electron-vite build --outDir=dist",
     "postinstall": "electron-builder install-app-deps",
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "npm run build && electron-builder --mac",
     "build:linux": "npm run build && electron-builder --linux",
-    "make": "electron-forge make",
+    "make": "electron-vite build --outDir=dist && electron-forge make",
     "publish": "electron-forge publish"
   },
   "dependencies": {
