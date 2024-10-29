@@ -59,7 +59,8 @@
             "repository": {
               "owner": "LouisRiverstone",
               "name": "sheet-splitter"
-            }
+            },
+            "prerelease": true
           }
         }
       ]
