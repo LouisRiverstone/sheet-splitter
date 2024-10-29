@@ -26,6 +26,7 @@
     "@electron-toolkit/preload": "^3.0.0",
     "@electron-toolkit/utils": "^3.0.0",
     "electron-updater": "^6.1.7",
+    "update-electron-app": "^3.0.0",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
@@ -100,6 +101,7 @@
               "owner": "LouisRiverstone",
               "name": "sheet-splitter"
             },
+            "draft": true,
             "prerelease": true,
             "generateReleaseNotes": true
           }
