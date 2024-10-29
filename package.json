@@ -18,7 +18,9 @@
     "build:unpack": "npm run build && electron-builder --dir",
     "build:win": "npm run build && electron-builder --win",
     "build:mac": "npm run build && electron-builder --mac",
-    "build:linux": "npm run build && electron-builder --linux"
+    "build:linux": "npm run build && electron-builder --linux",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish"
   },
   "dependencies": {
     "@electron-toolkit/preload": "^3.0.0",
@@ -27,6 +29,11 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@electron-forge/cli": "^7.5.0",
+    "@electron-forge/maker-deb": "^7.5.0",
+    "@electron-forge/maker-squirrel": "^7.5.0",
+    "@electron-forge/maker-zip": "^7.5.0",
+    "@electron-forge/plugin-vite": "^7.5.0",
     "@electron-forge/publisher-github": "^7.5.0",
     "@electron-toolkit/eslint-config": "^1.0.2",
     "@electron-toolkit/eslint-config-ts": "^2.0.0",
@@ -51,7 +58,40 @@
     "vue-tsc": "^2.0.22"
   },
   "config": {
+    "plugins": [
+      {
+        "name": "@electron-forge/plugin-vite",
+        "config": {
+          "build": [
+            {
+              "entry": "src/main.js",
+              "config": "vite.main.config.mjs"
+            },
+            {
+              "entry": "src/preload.js",
+              "config": "vite.preload.config.mjs"
+            }
+          ],
+          "renderer": [
+            {
+              "name": "main_window",
+              "config": "vite.renderer.config.mjs"
+            }
+          ]
+        }
+      }
+    ],
     "forge": {
+      "makers": [
+        {
+          "name": "@electron-forge/maker-zip",
+          "platforms": [
+            "darwin",
+            "linux",
+            "win32"
+          ]
+        }
+      ],
       "publishers": [
         {
           "name": "@electron-forge/publisher-github",
@@ -60,7 +100,8 @@
               "owner": "LouisRiverstone",
               "name": "sheet-splitter"
             },
-            "prerelease": true
+            "prerelease": true,
+            "generateReleaseNotes": true
           }
         }
       ]
