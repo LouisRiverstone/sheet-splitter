@@ -4,6 +4,7 @@
   "description": "A sheet-splitter for Excel",
   "main": "./dist/main/index.js",
   "author": "Louis Riverstone",
+  "license": "MIT",
   "homepage": "https://github.com/LouisRiverstone",
   "scripts": {
     "format": "prettier --write .",
